@@ -16,7 +16,7 @@ def calculate_square_area(input_value):
         float: El área 'A' calculada.
 
     Raises:
-        SystemExit: Si la entrada es inválida o el valor es negativo.
+        ValueError: Si la entrada es inválida o el valor es negativo.
     """
     try:
         # Convertir la entrada a flotante para permitir decimales
@@ -24,17 +24,26 @@ def calculate_square_area(input_value):
         
         # Validación geométrica: la base no puede ser negativa
         if a < 0:
-            print("Error: La base 'a' no puede ser negativa en un cuadrado.")
-            sys.exit(1)
+            raise ValueError("La base 'a' no puede ser negativa en un cuadrado.")
             
         # Implementación de la ecuación fundamental: A = a^2
         A = a ** 2
-        
-        print(f"Resultado: El área (A) del cuadrado con base (a = {a}) es: {A}")
         return A
         
-    except ValueError:
-        print("Error: Por favor, ingrese un número válido para la base 'a'.")
+    except ValueError as e:
+        if "negativa" in str(e):
+            raise e
+        raise ValueError("Por favor, ingrese un número válido para la base 'a'.")
+
+def process_area(input_value):
+    """
+    Llama al cálculo del área y maneja la salida.
+    """
+    try:
+        A = calculate_square_area(input_value)
+        print(f"Resultado: El área (A) del cuadrado con base (a = {input_value}) es: {A}")
+    except ValueError as e:
+        print(f"Error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -44,11 +53,11 @@ if __name__ == "__main__":
     """
     if len(sys.argv) > 1:
         # Uso mediante argumentos: python square_area.py 5
-        calculate_square_area(sys.argv[1])
+        process_area(sys.argv[1])
     else:
         # Uso interactivo: solicita el dato al usuario
         try:
             base_input = input("Ingrese el valor de la base (a): ")
-            calculate_square_area(base_input)
-        except EOFError:
+            process_area(base_input)
+        except (EOFError, KeyboardInterrupt):
             sys.exit(0)

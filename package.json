@@ -1,0 +1,23 @@
+{
+  "name": "encom",
+  "version": "1.0.0",
+  "description": "Este proyecto proporciona herramientas simples y funcionales para calcular el área de un cuadrado a través de la terminal. Utiliza la ecuación geométrica fundamental:",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/German210522/encom-s.a..git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/German210522/encom-s.a./issues"
+  },
+  "homepage": "https://github.com/German210522/encom-s.a.#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
